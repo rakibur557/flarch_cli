@@ -1,0 +1,25 @@
+name: flarch
+description: Flarch CLI Tool is a developer-friendly command-line interface (CLI) designed to simplify and streamline the process of creating a clean architecture folder structure for Flutter projects. It saves time and effort for developers by automating repetitive tasks and generating necessary files with ease.
+version: 1.0.0
+homepage: https://github.com/rakibur557/flarch_cli
+repository: https://github.com/rakibur557/flarch_cli
+issue_tracker: https://github.com/rakibur557/flarch_cli/issues
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+# Add regular dependencies here.
+dependencies:
+  args: ^2.7.0
+  path: ^1.9.1
+  yaml: ^3.1.3
+  yaml_edit: ^2.2.2
+  io: ^1.0.5
+  prompts: ^2.0.0
+  characters: ^1.4.1
+
+executables:
+  flarch: flarch
+
+dev_dependencies:
+  lints: ^6.0.0
