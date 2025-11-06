@@ -16,6 +16,7 @@ import 'src/features/router_config/router_config_manager.dart';
 import 'src/features/storage_config/storage_config_manager.dart';
 import 'src/features/tree/tree_manager.dart';
 import 'src/features/init/init_manager.dart';
+import 'src/features/health/health_manager.dart';
 import 'src/core/factories/architecture_factory.dart';
 
 class Flarch {
@@ -36,100 +37,73 @@ class Flarch {
     Banner.show();
 
     print('$skyBlue$reset');
-    print(
-        '$skyBlue${' ' * 23}$skyBlue 🛠️   USAGE GUIDE 🛠️$reset${' ' * 23}$skyBlue$reset');
+    print('$skyBlue${' ' * 23}$skyBlue 🛠️   USAGE GUIDE 🛠️$reset${' ' * 23}$skyBlue$reset');
     print('$skyBlue$reset');
     print('');
 
     print('$skyBlue⚡ Creating Features:$reset');
-    print(
-        '   $white flarch "FeatureName"$reset                               # Interactive mode');
-    print(
-        '   $white flarch "FeatureName" --clean|--mvc|--mvvm$reset          # With architecture');
+    print('   $white flarch "FeatureName"$reset                               # Interactive mode');
+    print('   $white flarch "FeatureName" --clean|--mvc|--mvvm$reset          # With architecture');
     print('');
 
     print('$skyBlue⚡  Clean Architecture Options:$reset');
-    print(
-        '   $white flarch "FeatureName" -u "UseCaseName"$reset              # Create use case');
-    print(
-        '   $white flarch "FeatureName" -m "ModelName"$reset                # Create model/entity');
-    print(
-        '   $white flarch "FeatureName" -r "RepositoryName"$reset           # Create repository');
-    print(
-        '   $white flarch "FeatureName" -d "DataSourceName"$reset           # Create data source');
+    print('   $white flarch "FeatureName" -u "UseCaseName"$reset              # Create use case');
+    print('   $white flarch "FeatureName" -m "ModelName"$reset                # Create model/entity');
+    print('   $white flarch "FeatureName" -r "RepositoryName"$reset           # Create repository');
+    print('   $white flarch "FeatureName" -d "DataSourceName"$reset           # Create data source');
     print('');
 
     print('$skyBlue⚡ State Management:$reset');
-    print(
-        '   $white flarch "FeatureName" -sm "Name" -bloc$reset              # Bloc state management');
-    print(
-        '   $white flarch "FeatureName" -sm "Name" -getx$reset              # GetX state management');
-    print(
-        '   $white flarch "FeatureName" -sm "Name" -provider$reset          # Provider state management');
+    print('   $white flarch "FeatureName" -sm "Name" -bloc$reset              # Bloc state management');
+    print('   $white flarch "FeatureName" -sm "Name" -getx$reset              # GetX state management');
+    print('   $white flarch "FeatureName" -sm "Name" -provider$reset          # Provider state management');
     print('');
 
     print('$skyBlue⚡ Project Initialization:$reset');
-    print(
-        '   $white flarch init$reset                                        # Initialize Flutter project (interactive mode)');
-    print(
-        '   $white flarch init <app_name>$reset                            # Initialize Flutter project (non-interactive, all options enabled)');
+    print('   $white flarch init$reset                                        # Initialize Flutter project (interactive mode)');
+    print('   $white flarch init <app_name>$reset                            # Initialize Flutter project (non-interactive, all options enabled)');
     print('');
 
     print('$skyBlue⚡ Feature Management:$reset');
-    print(
-        '   $white flarch list$reset                                        # List all features');
-    print(
-        '   $white flarch tree$reset                                        # Show project directory tree');
-    print(
-        '   $white flarch rm <FeatureName>$reset                        # Remove a feature safely');
-    print(
-        '   $white flarch rename <OldName> <NewName>$reset                # Rename a feature safely');
-    print(
-        '   $white flarch rename <OldName>$reset                          # Interactive rename mode');
+    print('   $white flarch list$reset                                        # List all features');
+    print('   $white flarch tree$reset                                        # Show project directory tree');
+    print('   $white flarch rm <FeatureName>$reset                        # Remove a feature safely');
+    print('   $white flarch rename <OldName> <NewName>$reset                # Rename a feature safely');
+    print('   $white flarch rename <OldName>$reset                          # Interactive rename mode');
     print('');
 
     print('$skyBlue⚡  Project Configuration:$reset');
-    print(
-        '   $white flarch config assets$reset                              # Setup assets folder structure');
-    print(
-        '   $white flarch config main$reset                                # Clean main.dart and create app.dart');
-    print(
-        '   $white flarch config theme$reset                               # Setup theme configuration');
-    print(
-        '   $white flarch config router$reset                               # Setup GoRouter configuration');
+    print('   $white flarch config assets$reset                              # Setup assets folder structure');
+    print('   $white flarch config main$reset                                # Clean main.dart and create app.dart');
+    print('   $white flarch config theme$reset                               # Setup theme configuration');
+    print('   $white flarch config router$reset                               # Setup GoRouter configuration');
     print(
         '   $white flarch config storage$reset                              # Setup local storage (Hive, SharedPreferences, ObjectBox, Isar, Drift)');
     print('');
 
     print('$skyBlue⚡ Project Settings:$reset');
-    print(
-        '   $white flarch config package <new.id>$reset                    # Replace package ID (e.g., com.example.app)');
-    print(
-        '   $white flarch config package --interactive$reset              # Interactive package ID replacement');
-    print(
-        '   $white flarch config package <new.id> --backup$reset           # Replace with backup');
-    print(
-        '   $white flarch config name "App Name"$reset                     # Change app display name');
-    print(
-        '   $white flarch config name --interactive$reset                  # Interactive app name change');
-    print(
-        '   $white flarch config name "App Name" --backup$reset             # Change app name with backup');
+    print('   $white flarch config package <new.id>$reset                    # Replace package ID (e.g., com.example.app)');
+    print('   $white flarch config package --interactive$reset              # Interactive package ID replacement');
+    print('   $white flarch config package <new.id> --backup$reset           # Replace with backup');
+    print('   $white flarch config name "App Name"$reset                     # Change app display name');
+    print('   $white flarch config name --interactive$reset                  # Interactive app name change');
+    print('   $white flarch config name "App Name" --backup$reset             # Change app name with backup');
     print('');
 
     print('$skyBlue⚡ Project Maintenance:$reset');
-    print(
-        '   $white flarch clean pubspec$reset                             # Clean comments from pubspec.yaml');
+    print('   $white flarch clean pubspec$reset                             # Clean comments from pubspec.yaml');
+    print('');
+
+    print('$skyBlue⚡ Project Health:$reset');
+    print('   $white flarch health$reset                                    # Check project health and get recommendations');
     print('');
 
     print('$skyBlue⚡  Help & Information:$reset');
-    print(
-        '   $white flarch --help$reset or $white flarch -h$reset                        # Show this help');
-    print(
-        '   $white flarch --version$reset or $white flarch -v$reset                     # Show version');
+    print('   $white flarch --help$reset or $white flarch -h$reset                        # Show this help');
+    print('   $white flarch --version$reset or $white flarch -v$reset                     # Show version');
     print('');
 
-    print(
-        '$successGreen💡 Tip:$reset Run $white flarch "FeatureName"$reset without arguments for interactive prompts!');
+    print('$successGreen💡 Tip:$reset Run $white flarch "FeatureName"$reset without arguments for interactive prompts!');
     print('');
   }
 
@@ -145,9 +119,7 @@ class Flarch {
         printUsage();
         return;
       }
-      if (firstArg == '--version' ||
-          firstArg == '-v' ||
-          firstArg == 'version') {
+      if (firstArg == '--version' || firstArg == '-v' || firstArg == 'version') {
         printVersion();
         return;
       }
@@ -176,6 +148,7 @@ class Flarch {
       'clean',
       'config',
       'setup',
+      'health',
     ];
 
     // Check if it's a reserved command first (case-insensitive)
@@ -190,6 +163,11 @@ class Flarch {
         return;
       }
 
+      if (firstArgLower == 'health') {
+        await HealthManager.checkHealth();
+        return;
+      }
+
       if (firstArgLower == 'init') {
         // Check if app name is provided as second argument
         String? appName;
@@ -198,8 +176,7 @@ class Flarch {
           // Validate app name (lowercase, underscores only, no spaces or special characters)
           if (!RegExp(r'^[a-z][a-z0-9_]*$').hasMatch(appName)) {
             Logger.error('Invalid app name: $appName');
-            Logger.info(
-                'App name must be lowercase, with underscores only, no spaces or special characters.');
+            Logger.info('App name must be lowercase, with underscores only, no spaces or special characters.');
             return;
           }
         }
@@ -215,10 +192,7 @@ class Flarch {
     final featureName = firstArg;
 
     // Handle remove command (case-insensitive)
-    if (firstArgLower == 'remove' ||
-        firstArgLower == 'delete' ||
-        firstArgLower == 'del' ||
-        firstArgLower == 'rm') {
+    if (firstArgLower == 'remove' || firstArgLower == 'delete' || firstArgLower == 'del' || firstArgLower == 'rm') {
       if (arguments.length < 2) {
         Logger.error('Please specify a feature name to delete.');
         Logger.info('Usage: flarch delete <FeatureName>');
@@ -230,9 +204,7 @@ class Flarch {
     }
 
     // Handle rename command (case-insensitive)
-    if (firstArgLower == 'rename' ||
-        firstArgLower == 'mv' ||
-        firstArgLower == 'ren') {
+    if (firstArgLower == 'rename' || firstArgLower == 'mv' || firstArgLower == 'ren') {
       if (arguments.length < 2) {
         Logger.error('Please specify a feature name to rename.');
         Logger.info('Usage: flarch rename <OldFeatureName> [NewFeatureName]');
@@ -243,8 +215,7 @@ class Flarch {
       }
       final oldFeatureName = arguments[1];
       final newFeatureName = arguments.length > 2 ? arguments[2] : null;
-      await FeatureRenamer.renameFeature(oldFeatureName,
-          newFeatureName: newFeatureName);
+      await FeatureRenamer.renameFeature(oldFeatureName, newFeatureName: newFeatureName);
       return;
     }
 
@@ -253,8 +224,7 @@ class Flarch {
       if (arguments.length < 2) {
         Logger.error('Please specify what to clean.');
         Logger.info('Usage: flarch clean pubspec');
-        Logger.info(
-            'Available options: pubspec (cleans pubspec.yaml comments)');
+        Logger.info('Available options: pubspec (cleans pubspec.yaml comments)');
         return;
       }
       final cleanTarget = arguments[1].toLowerCase();
@@ -276,11 +246,9 @@ class Flarch {
         Logger.info('Available options:');
         Logger.info('  assets - Setup assets folder structure');
         Logger.info('  main - Clean main.dart and create app.dart');
-        Logger.info(
-            '  theme - Setup theme configuration with light/dark themes');
+        Logger.info('  theme - Setup theme configuration with light/dark themes');
         Logger.info('  router - Setup GoRouter configuration');
-        Logger.info(
-            '  storage - Setup local storage (Hive, SharedPreferences, ObjectBox, Isar, Drift)');
+        Logger.info('  storage - Setup local storage (Hive, SharedPreferences, ObjectBox, Isar, Drift)');
         Logger.info('  package [id] - Replace application package ID');
         Logger.info('    Examples:');
         Logger.info('      flarch config package com.newpackage.app');
@@ -307,12 +275,9 @@ class Flarch {
         await StorageConfigManager.configureStorage();
       } else if (configTarget == 'package') {
         // Parse package command options
-        bool interactive =
-            arguments.contains('--interactive') || arguments.contains('-i');
-        bool createBackup =
-            arguments.contains('--backup') || arguments.contains('-b');
-        bool dryRun =
-            arguments.contains('--dry-run') || arguments.contains('--preview');
+        bool interactive = arguments.contains('--interactive') || arguments.contains('-i');
+        bool createBackup = arguments.contains('--backup') || arguments.contains('-b');
+        bool dryRun = arguments.contains('--dry-run') || arguments.contains('--preview');
 
         // Get package ID from arguments (skip flags)
         String? newPackageId;
@@ -332,12 +297,9 @@ class Flarch {
         );
       } else if (configTarget == 'name') {
         // Parse app name command options
-        bool interactive =
-            arguments.contains('--interactive') || arguments.contains('-i');
-        bool createBackup =
-            arguments.contains('--backup') || arguments.contains('-b');
-        bool dryRun =
-            arguments.contains('--dry-run') || arguments.contains('--preview');
+        bool interactive = arguments.contains('--interactive') || arguments.contains('-i');
+        bool createBackup = arguments.contains('--backup') || arguments.contains('-b');
+        bool dryRun = arguments.contains('--dry-run') || arguments.contains('--preview');
 
         // Get app name from arguments (skip flags)
         // App name might have spaces, so we need to handle quoted strings
@@ -380,8 +342,7 @@ class Flarch {
         );
       } else {
         Logger.error('Unknown config target: $configTarget');
-        Logger.info(
-            'Available options: assets, main, theme, router, storage, package, name');
+        Logger.info('Available options: assets, main, theme, router, storage, package, name');
       }
       return;
     }
@@ -390,8 +351,7 @@ class Flarch {
     if (firstArgLower == 'setup') {
       if (arguments.length < 2) {
         Logger.error('Please specify what to setup.');
-        Logger.info(
-            'Usage: flarch setup assets | flarch setup package [new.package.id]');
+        Logger.info('Usage: flarch setup assets | flarch setup package [new.package.id]');
         Logger.info('Available options:');
         Logger.info('  assets - Setup assets folder structure');
         Logger.info('  package [id] - Replace application package ID');
@@ -403,12 +363,9 @@ class Flarch {
         await AssetConfigManager.setupAssets();
       } else if (setupTarget == 'package') {
         // Parse package command options
-        bool interactive =
-            arguments.contains('--interactive') || arguments.contains('-i');
-        bool createBackup =
-            arguments.contains('--backup') || arguments.contains('-b');
-        bool dryRun =
-            arguments.contains('--dry-run') || arguments.contains('--preview');
+        bool interactive = arguments.contains('--interactive') || arguments.contains('-i');
+        bool createBackup = arguments.contains('--backup') || arguments.contains('-b');
+        bool dryRun = arguments.contains('--dry-run') || arguments.contains('--preview');
 
         // Get package ID from arguments (skip flags)
         String? newPackageId;
@@ -428,12 +385,9 @@ class Flarch {
         );
       } else if (setupTarget == 'name') {
         // Parse app name command options
-        bool interactive =
-            arguments.contains('--interactive') || arguments.contains('-i');
-        bool createBackup =
-            arguments.contains('--backup') || arguments.contains('-b');
-        bool dryRun =
-            arguments.contains('--dry-run') || arguments.contains('--preview');
+        bool interactive = arguments.contains('--interactive') || arguments.contains('-i');
+        bool createBackup = arguments.contains('--backup') || arguments.contains('-b');
+        bool dryRun = arguments.contains('--dry-run') || arguments.contains('--preview');
 
         // Get app name from arguments (skip flags)
         String? newAppName;
@@ -493,19 +447,14 @@ class Flarch {
       return;
     }
 
-    if (arguments.length > 1 &&
-        ['-mvc', '-mvvm', '-clean'].contains(arguments[1])) {
+    if (arguments.length > 1 && ['-mvc', '-mvvm', '-clean'].contains(arguments[1])) {
       final architecture = arguments[1].substring(1);
       final stateManagement = await _promptForStateManagement();
-      final customClassName =
-          stateManagement != null ? _promptForCustomClassName() : null;
+      final customClassName = stateManagement != null ? _promptForCustomClassName() : null;
 
-      await GetItManager.manageGetIt(
-          featureName, stateManagement, architecture);
-      _createFeatureStructure(
-          featureName, stateManagement, customClassName, architecture);
-      Logger.success(
-          'Feature "$featureName" created successfully with $architecture architecture');
+      await GetItManager.manageGetIt(featureName, stateManagement, architecture);
+      _createFeatureStructure(featureName, stateManagement, customClassName, architecture);
+      Logger.success('Feature "$featureName" created successfully with $architecture architecture');
       return;
     }
 
@@ -534,25 +483,21 @@ class Flarch {
   Future<void> _createFeatureWithPrompt(String featureName) async {
     final architecture = await _promptForArchitecture() ?? 'clean';
     final stateManagement = await _promptForStateManagement();
-    final customClassName =
-        stateManagement != null ? _promptForCustomClassName() : null;
+    final customClassName = stateManagement != null ? _promptForCustomClassName() : null;
 
     await GetItManager.manageGetIt(featureName, stateManagement, architecture);
-    _createFeatureStructure(
-        featureName, stateManagement, customClassName, architecture);
+    _createFeatureStructure(featureName, stateManagement, customClassName, architecture);
     Logger.success('Feature "$featureName" created successfully');
   }
 
   Future<void> _handleOption(List<String> arguments, String featureName) async {
     final architecture = await _getCurrentArchitecture(featureName);
-    final architectureHandler =
-        ArchitectureFactory().getArchitectureHandler(architecture);
+    final architectureHandler = ArchitectureFactory().getArchitectureHandler(architecture);
 
     if (architectureHandler != null) {
       await architectureHandler.handleOption(arguments, featureName);
     } else {
-      Logger.warning(
-          '  Unknown architecture. Using Clean Architecture as default.');
+      Logger.warning('  Unknown architecture. Using Clean Architecture as default.');
       await CleanArchitecture().handleOption(arguments, featureName);
     }
   }
@@ -619,9 +564,7 @@ class Flarch {
 
   String? _promptForCustomClassName() {
     final input = Prompter.text(
-      message: skyBlue +
-          '⚡ Custom class name for state management (optional)' +
-          reset,
+      message: skyBlue + '⚡ Custom class name for state management (optional)' + reset,
       defaultValue: '',
       validate: (s) => true, // Allow empty for optional field
       compact: true, // Minimal spacing
@@ -629,20 +572,16 @@ class Flarch {
     return input?.trim().isEmpty ?? true ? null : input!.trim();
   }
 
-  void _createFeatureStructure(String featureName, String? stateManagement,
-      String? customClassName, String architecture) {
-    final architectureHandler =
-        ArchitectureFactory().getArchitectureHandler(architecture);
+  void _createFeatureStructure(String featureName, String? stateManagement, String? customClassName, String architecture) {
+    final architectureHandler = ArchitectureFactory().getArchitectureHandler(architecture);
     if (architectureHandler != null) {
-      architectureHandler.createStructure(
-          featureName, stateManagement, customClassName);
+      architectureHandler.createStructure(featureName, stateManagement, customClassName);
     } else {
       Logger.error('Failed to find architecture handler.');
     }
   }
 
-  bool _featureExists(String featureName) =>
-      Directory('lib/features/$featureName').existsSync();
+  bool _featureExists(String featureName) => Directory('lib/features/$featureName').existsSync();
 
   Future<void> _removeFeature(String featureName) async {
     await FeatureRemover.removeFeature(featureName);
