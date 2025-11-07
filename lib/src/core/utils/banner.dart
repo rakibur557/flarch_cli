@@ -8,7 +8,7 @@ void main() {
 class Banner {
   static const String version = '1.0.0';
   static const String developer = 'Rakibur Rahman';
-  static const String githubUrl = 'https://github.com/rakibur-rahman';
+  static const String githubUrl = 'https://github.com/rakibur557/flarch_cli';
 
   // TrueColor helper
   static String rgb(int r, int g, int b) => '\x1B[38;2;$r;${g};${b}m';
@@ -24,8 +24,7 @@ class Banner {
     const int boxWidth = 63; // consistent frame width
 
     // Helper: strip ANSI and pad properly
-    String stripAnsi(String input) =>
-        input.replaceAll(RegExp(r'\x1B\[[0-9;]*m'), '');
+    String stripAnsi(String input) => input.replaceAll(RegExp(r'\x1B\[[0-9;]*m'), '');
     String pad(String input, [int width = boxWidth - 4]) {
       final len = stripAnsi(input).characters.length;
       return input + ' ' * (width - len);
@@ -51,8 +50,7 @@ class Banner {
 
     // Spacer and title
     print('$skyBlue║$reset ${pad('')}$skyBlue║$reset');
-    print(
-        '$skyBlue║$reset ${pad('$bold${white}Flutter Architecture CLI Tool$reset')}$skyBlue║$reset');
+    print('$skyBlue║$reset ${pad('$bold${white}Flutter Architecture CLI Tool$reset')}$skyBlue║$reset');
     print('$skyBlue║$reset ${pad('')}$skyBlue║$reset');
 
     // Divider
@@ -61,8 +59,7 @@ class Banner {
     // Info lines (compact)
     final versionLine = pad('${skyBlue}Version:$reset $white$version$reset');
     final devLine = pad('${skyBlue}Developed by:$reset $white$developer$reset');
-    final ghLine = pad(
-        '${skyBlue}GitHub:$reset $white$underlineOn$githubUrl$underlineOff$reset');
+    final ghLine = pad('${skyBlue}GitHub:$reset $white$underlineOn$githubUrl$underlineOff$reset');
 
     print('$skyBlue║$reset $versionLine$skyBlue║$reset');
     print('$skyBlue║$reset $devLine$skyBlue║$reset');

@@ -516,7 +516,7 @@ class Flarch {
   Future<String?> _promptForArchitecture() async {
     final options = ['Clean Architecture', 'MVVM', 'MVC'];
     final choice = Prompter.select<String>(
-      message: skyBlue + '⚡ Choose an architecture' + reset,
+      message: '$skyBlue⚡ Choose an architecture$reset',
       options: options,
       displayText: (option) => option,
       defaultValue: options[0],
@@ -540,7 +540,7 @@ class Flarch {
   Future<String?> _promptForStateManagement() async {
     final options = ['Bloc', 'GetX', 'Provider', 'Skip'];
     final choice = Prompter.select<String>(
-      message: skyBlue + '⚡ Choose a state management' + reset,
+      message: '$skyBlue⚡ Choose a state management$reset',
       options: options,
       displayText: (option) => option,
       defaultValue: options[3], // Skip by default
@@ -564,7 +564,7 @@ class Flarch {
 
   String? _promptForCustomClassName() {
     final input = Prompter.text(
-      message: skyBlue + '⚡ Custom class name for state management (optional)' + reset,
+      message: '$skyBlue⚡ Custom class name for state management (optional)$reset',
       defaultValue: '',
       validate: (s) => true, // Allow empty for optional field
       compact: true, // Minimal spacing

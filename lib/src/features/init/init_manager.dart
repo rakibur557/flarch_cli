@@ -52,13 +52,11 @@ class InitManager {
       // If not in a Flutter project, create one first
       if (isNewProject) {
         if (isNonInteractive) {
-          finalAppName =
-              appName!; // Safe: isNonInteractive ensures appName is not null
-          Logger.info(
-              '📋 Creating Flutter project: $finalAppName (non-interactive mode)');
+          // appName is guaranteed to be non-null when isNonInteractive is true
+          finalAppName = appName!; // ignore: unnecessary_non_null_assertion
+          Logger.info('📋 Creating Flutter project: $finalAppName (non-interactive mode)');
         } else {
-          Logger.info(
-              '📋 No Flutter project found. Let\'s create one first...');
+          Logger.info('📋 No Flutter project found. Let\'s create one first...');
           print('');
 
           // Step 1: Get app name first
@@ -80,24 +78,20 @@ class InitManager {
         if (projectDir.existsSync()) {
           // Change working directory to the new project
           Directory.current = projectDir;
-          Logger.success(
-              'Created Flutter project and changed to project directory');
+          Logger.success('Created Flutter project and changed to project directory');
         } else {
-          Logger.error(
-              'Project directory not found after creation: $projectPath');
+          Logger.error('Project directory not found after creation: $projectPath');
           return;
         }
         print('');
       } else {
         // We're in an existing project
         if (isNonInteractive) {
-          finalAppName =
-              appName!; // Safe: isNonInteractive ensures appName is not null
-          Logger.info(
-              '📋 Existing Flutter project detected. Configuring in non-interactive mode...');
+          // appName is guaranteed to be non-null when isNonInteractive is true
+          finalAppName = appName!; // ignore: unnecessary_non_null_assertion
+          Logger.info('📋 Existing Flutter project detected. Configuring in non-interactive mode...');
         } else {
-          Logger.info(
-              '📋 Existing Flutter project detected. Let\'s configure it...');
+          Logger.info('📋 Existing Flutter project detected. Let\'s configure it...');
           print('');
           finalAppName = await _getAppNameFromPubspec() ?? await _getAppName();
         }
@@ -156,11 +150,9 @@ class InitManager {
       Logger.info('Next steps:');
       Logger.info('  1. Run: flutter pub get');
       if (config.setupNetwork) {
-        Logger.info(
-            '  2. If using injectable, run: flutter pub run build_runner build');
+        Logger.info('  2. If using injectable, run: flutter pub run build_runner build');
       }
-      Logger.info(
-          '  3. Start building your features with: flarch "FeatureName"');
+      Logger.info('  3. Start building your features with: flarch "FeatureName"');
       print('');
     } catch (e) {
       Logger.error('Initialization failed: $e');
@@ -172,8 +164,7 @@ class InitManager {
     String? appName;
     while (appName == null || !_isValidAppName(appName)) {
       appName = Prompter.text(
-        message:
-            'App name (lowercase, underscores only, no spaces or special characters)',
+        message: 'App name (lowercase, underscores only, no spaces or special characters)',
         validate: (value) => _isValidAppName(value),
       );
 
@@ -183,8 +174,7 @@ class InitManager {
       }
 
       if (!_isValidAppName(appName)) {
-        Logger.error(
-            'Invalid app name. Use only lowercase letters and underscores.');
+        Logger.error('Invalid app name. Use only lowercase letters and underscores.');
         appName = null;
       }
     }
@@ -200,8 +190,7 @@ class InitManager {
       }
 
       final content = await pubspecFile.readAsString();
-      final match =
-          RegExp(r'^name:\s*([a-z0-9_]+)', multiLine: true).firstMatch(content);
+      final match = RegExp(r'^name:\s*([a-z0-9_]+)', multiLine: true).firstMatch(content);
       if (match != null) {
         return match.group(1);
       }
@@ -316,20 +305,13 @@ class InitManager {
     final crossColor = Logger.rgb(200, 200, 200);
 
     print('  ${summaryColor}App Name:${Logger.reset} ${config.appName}');
-    print(
-        '  ${config.setupAssets ? checkColor : crossColor}${config.setupAssets ? '✓' : '✗'}${Logger.reset} Asset configurations');
-    print(
-        '  ${config.setupTheme ? checkColor : crossColor}${config.setupTheme ? '✓' : '✗'}${Logger.reset} Theme configurations');
-    print(
-        '  ${config.setupRouter ? checkColor : crossColor}${config.setupRouter ? '✓' : '✗'}${Logger.reset} Router configurations');
-    print(
-        '  ${config.setupNetwork ? checkColor : crossColor}${config.setupNetwork ? '✓' : '✗'}${Logger.reset} Network caller (Dio)');
-    print(
-        '  ${config.setupStorage ? checkColor : crossColor}${config.setupStorage ? '✓' : '✗'}${Logger.reset} Local storage (Hive)');
-    print(
-        '  ${config.cleanPubspec ? checkColor : crossColor}${config.cleanPubspec ? '✓' : '✗'}${Logger.reset} Clean pubspec.yaml');
-    print(
-        '  ${config.setupUtils ? checkColor : crossColor}${config.setupUtils ? '✓' : '✗'}${Logger.reset} Utils configurations');
+    print('  ${config.setupAssets ? checkColor : crossColor}${config.setupAssets ? '✓' : '✗'}${Logger.reset} Asset configurations');
+    print('  ${config.setupTheme ? checkColor : crossColor}${config.setupTheme ? '✓' : '✗'}${Logger.reset} Theme configurations');
+    print('  ${config.setupRouter ? checkColor : crossColor}${config.setupRouter ? '✓' : '✗'}${Logger.reset} Router configurations');
+    print('  ${config.setupNetwork ? checkColor : crossColor}${config.setupNetwork ? '✓' : '✗'}${Logger.reset} Network caller (Dio)');
+    print('  ${config.setupStorage ? checkColor : crossColor}${config.setupStorage ? '✓' : '✗'}${Logger.reset} Local storage (Hive)');
+    print('  ${config.cleanPubspec ? checkColor : crossColor}${config.cleanPubspec ? '✓' : '✗'}${Logger.reset} Clean pubspec.yaml');
+    print('  ${config.setupUtils ? checkColor : crossColor}${config.setupUtils ? '✓' : '✗'}${Logger.reset} Utils configurations');
     print('');
   }
 
@@ -675,8 +657,7 @@ class DioClient {
 
   /// Create network info
   static Future<void> _createNetworkInfo() async {
-    final content =
-        '''import 'package:connectivity_plus/connectivity_plus.dart';
+    final content = '''import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
@@ -979,8 +960,7 @@ Future<void> initializeStorage() async {
   static Future<void> _updateMainFileForStorage() async {
     final mainFile = File('lib/main.dart');
     if (!mainFile.existsSync()) {
-      Logger.warning(
-          '   main.dart not found. Please initialize storage manually.');
+      Logger.warning('   main.dart not found. Please initialize storage manually.');
       return;
     }
 
@@ -995,9 +975,7 @@ Future<void> initializeStorage() async {
       if (matches.isNotEmpty) {
         final lastMatch = matches.last;
         final insertIndex = lastMatch.end;
-        content = content.substring(0, insertIndex) +
-            '\n$importLine' +
-            content.substring(insertIndex);
+        content = content.substring(0, insertIndex) + '\n$importLine' + content.substring(insertIndex);
       } else {
         content = '$importLine\n$content';
       }
@@ -1023,8 +1001,7 @@ Future<void> initializeStorage() async {
 
         // Ensure WidgetsFlutterBinding.ensureInitialized() is present
         final bindingCall = '  WidgetsFlutterBinding.ensureInitialized();';
-        final bindingPattern =
-            RegExp(r'WidgetsFlutterBinding\.ensureInitialized\(\)\s*;');
+        final bindingPattern = RegExp(r'WidgetsFlutterBinding\.ensureInitialized\(\)\s*;');
 
         if (!bindingPattern.hasMatch(content)) {
           // WidgetsFlutterBinding not found, add it before initializeStorage
@@ -1035,9 +1012,7 @@ Future<void> initializeStorage() async {
             while (lineStart > 0 && content[lineStart - 1] != '\n') {
               lineStart--;
             }
-            content = content.substring(0, lineStart) +
-                '$bindingCall\n$initCall\n' +
-                content.substring(lineStart);
+            content = content.substring(0, lineStart) + '$bindingCall\n$initCall\n' + content.substring(lineStart);
           } else {
             // Insert at start of main function
             content = content.replaceFirst(
@@ -1051,25 +1026,19 @@ Future<void> initializeStorage() async {
           if (bindingMatch != null) {
             final insertIndex = bindingMatch.end;
             int afterIndex = insertIndex;
-            while (afterIndex < content.length &&
-                (content[afterIndex] == ' ' || content[afterIndex] == '\t')) {
+            while (afterIndex < content.length && (content[afterIndex] == ' ' || content[afterIndex] == '\t')) {
               afterIndex++;
             }
             if (afterIndex < content.length && content[afterIndex] == '\n') {
               afterIndex++;
-              content = content.substring(0, afterIndex) +
-                  '$initCall\n' +
-                  content.substring(afterIndex);
+              content = content.substring(0, afterIndex) + '$initCall\n' + content.substring(afterIndex);
             } else {
-              content = content.substring(0, insertIndex) +
-                  '\n$initCall' +
-                  content.substring(insertIndex);
+              content = content.substring(0, insertIndex) + '\n$initCall' + content.substring(insertIndex);
             }
           }
         }
       } else {
-        Logger.warning(
-            '   main() function not found in main.dart. Please add initialization manually.');
+        Logger.warning('   main() function not found in main.dart. Please add initialization manually.');
       }
     }
 

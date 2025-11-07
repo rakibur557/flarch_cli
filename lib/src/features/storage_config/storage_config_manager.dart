@@ -13,8 +13,7 @@ class StorageConfigManager {
 
       // Check if we're in a Flutter project
       if (!_isFlutterProject()) {
-        Logger.error(
-            'Not a Flutter project. Please run this command from your Flutter project root.');
+        Logger.error('Not a Flutter project. Please run this command from your Flutter project root.');
         return false;
       }
 
@@ -149,8 +148,7 @@ class StorageConfigManager {
       await storageDir.create(recursive: true);
     }
 
-    final serviceFilePath =
-        path.join('lib', 'core', 'storage', 'storage_service.dart');
+    final serviceFilePath = path.join('lib', 'core', 'storage', 'storage_service.dart');
     final serviceFile = File(serviceFilePath);
 
     if (serviceFile.existsSync()) {
@@ -187,13 +185,11 @@ class StorageConfigManager {
       await initDir.create(recursive: true);
     }
 
-    final initFilePath =
-        path.join('lib', 'core', 'storage', 'storage_init.dart');
+    final initFilePath = path.join('lib', 'core', 'storage', 'storage_init.dart');
     final initFile = File(initFilePath);
 
     if (initFile.existsSync()) {
-      Logger.warning(
-          '   Storage initialization already exists. Skipping creation.');
+      Logger.warning('   Storage initialization already exists. Skipping creation.');
       return;
     }
 
@@ -232,8 +228,7 @@ class StorageConfigManager {
   }
 
   /// Update injection.dart file
-  static Future<void> _updateInjectionFile(
-      File injectionFile, String storageOption) async {
+  static Future<void> _updateInjectionFile(File injectionFile, String storageOption) async {
     String content = await injectionFile.readAsString();
 
     // Add import if not present
@@ -245,9 +240,7 @@ class StorageConfigManager {
       if (matches.isNotEmpty) {
         final lastMatch = matches.last;
         final insertIndex = lastMatch.end;
-        content = content.substring(0, insertIndex) +
-            '\n$importLine' +
-            content.substring(insertIndex);
+        content = content.substring(0, insertIndex) + '\n$importLine' + content.substring(insertIndex);
       } else {
         content = '$importLine\n$content';
       }
@@ -281,8 +274,7 @@ class StorageConfigManager {
   static Future<void> _updateMainFile(String storageOption) async {
     final mainFile = File('lib/main.dart');
     if (!mainFile.existsSync()) {
-      Logger.warning(
-          '   main.dart not found. Please initialize storage manually.');
+      Logger.warning('   main.dart not found. Please initialize storage manually.');
       return;
     }
 
@@ -297,9 +289,7 @@ class StorageConfigManager {
       if (matches.isNotEmpty) {
         final lastMatch = matches.last;
         final insertIndex = lastMatch.end;
-        content = content.substring(0, insertIndex) +
-            '\n$importLine' +
-            content.substring(insertIndex);
+        content = '${content.substring(0, insertIndex)}\n$importLine${content.substring(insertIndex)}';
       } else {
         content = '$importLine\n$content';
       }
@@ -325,8 +315,7 @@ class StorageConfigManager {
 
         // Ensure WidgetsFlutterBinding.ensureInitialized() is present
         final bindingCall = '  WidgetsFlutterBinding.ensureInitialized();';
-        final bindingPattern =
-            RegExp(r'WidgetsFlutterBinding\.ensureInitialized\(\)\s*;');
+        final bindingPattern = RegExp(r'WidgetsFlutterBinding\.ensureInitialized\(\)\s*;');
 
         if (!bindingPattern.hasMatch(content)) {
           // WidgetsFlutterBinding not found, add it before initializeStorage
@@ -340,9 +329,7 @@ class StorageConfigManager {
               lineStart--;
             }
             // Insert before the line containing runApp
-            content = content.substring(0, lineStart) +
-                '$bindingCall\n$initCall\n' +
-                content.substring(lineStart);
+            content = '${content.substring(0, lineStart)}$bindingCall\n$initCall\n${content.substring(lineStart)}';
           } else {
             // Insert at start of main function
             content = content.replaceFirst(
@@ -357,28 +344,22 @@ class StorageConfigManager {
             final insertIndex = bindingMatch.end;
             // Check if there's already a newline after the binding call
             int afterIndex = insertIndex;
-            while (afterIndex < content.length &&
-                (content[afterIndex] == ' ' || content[afterIndex] == '\t')) {
+            while (afterIndex < content.length && (content[afterIndex] == ' ' || content[afterIndex] == '\t')) {
               afterIndex++;
             }
             if (afterIndex < content.length && content[afterIndex] == '\n') {
               // Newline exists, insert after it
               afterIndex++;
-              content = content.substring(0, afterIndex) +
-                  '$initCall\n' +
-                  content.substring(afterIndex);
+              content = '${content.substring(0, afterIndex)}$initCall\n${content.substring(afterIndex)}';
             } else {
               // No newline, insert after the binding call
-              content = content.substring(0, insertIndex) +
-                  '\n$initCall' +
-                  content.substring(insertIndex);
+              content = '${content.substring(0, insertIndex)}\n$initCall${content.substring(insertIndex)}';
             }
           }
         }
       } else {
         // No main() function found, add it
-        Logger.warning(
-            '   main() function not found in main.dart. Please add initialization manually.');
+        Logger.warning('   main() function not found in main.dart. Please add initialization manually.');
       }
     }
 
