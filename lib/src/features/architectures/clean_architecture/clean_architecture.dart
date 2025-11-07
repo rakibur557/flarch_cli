@@ -51,11 +51,11 @@ class CleanArchitecture implements IArchitecture {
 
       if (arguments.contains('-bloc')) {
         smType = 'bloc';
-        // ignore: curly_braces_in_flow_control_structures
-      } else if (arguments.contains('-getx'))
+      } else if (arguments.contains('-getx')) {
         smType = 'getx';
-      // ignore: curly_braces_in_flow_control_structures
-      else if (arguments.contains('-provider')) smType = 'provider';
+      } else if (arguments.contains('-provider')) {
+        smType = 'provider';
+      }
 
       if (smType == null) {
         Logger.error(

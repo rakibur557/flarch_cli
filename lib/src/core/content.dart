@@ -7,7 +7,7 @@ class ${Utility.convertCase(className, toCamelCase: true)}Entity {
 }
 ''';
 
-  static modelContent(String className) => '''
+  static String modelContent(String className) => '''
 import '../../domain/entities/${className.toLowerCase()}_entity.dart';
 
 class ${Utility.convertCase(className, toCamelCase: true)}Model extends ${Utility.convertCase(className, toCamelCase: true)}Entity {
@@ -31,9 +31,7 @@ class ${className}RepositoryImplement implements ${className}Repository {
 }
 ''';
 
-  static String useCaseContent(String className, String repositoryFileName,
-          String repositoryClassName) =>
-      '''
+  static String useCaseContent(String className, String repositoryFileName, String repositoryClassName) => '''
 import '../../domain/repositories/${repositoryFileName}_repository.dart';
 
 class ${className}UseCase {

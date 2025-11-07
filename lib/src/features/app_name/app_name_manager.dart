@@ -253,7 +253,7 @@ class AppNameManager {
         if (labelRegex.hasMatch(content)) {
           content = content.replaceAllMapped(
             labelRegex,
-            (match) => '${match.group(1)}${newAppName}${match.group(3)}',
+            (match) => '${match.group(1)}$newAppName${match.group(3)}',
           );
           await file.writeAsString(content);
           Logger.success('Updated $manifestPath');
@@ -290,7 +290,7 @@ class AppNameManager {
           // Replace existing app_name
           content = content.replaceAllMapped(
             appNameRegex,
-            (match) => '<string name="app_name">${newAppName}</string>',
+            (match) => '<string name="app_name">$newAppName</string>',
           );
         } else {
           // Add app_name before </resources>
@@ -298,19 +298,19 @@ class AppNameManager {
           if (resourcesCloseRegex.hasMatch(content)) {
             content = content.replaceFirst(
               resourcesCloseRegex,
-              '    <string name="app_name">${newAppName}</string>\n\$1</resources>',
+              '    <string name="app_name">$newAppName</string>\n\$1</resources>',
             );
           } else {
             // No </resources> tag found, append it
             content +=
-                '\n    <string name="app_name">${newAppName}</string>\n</resources>';
+                '\n    <string name="app_name">$newAppName</string>\n</resources>';
           }
         }
       } else {
         // Create new strings.xml
         content = '''<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">${newAppName}</string>
+    <string name="app_name">$newAppName</string>
 </resources>
 ''';
       }
@@ -385,7 +385,7 @@ class AppNameManager {
         content = content.replaceAllMapped(
           bundleNameRegex,
           (match) =>
-              '<key>CFBundleName</key>\n\t<string>${newAppName}</string>',
+              '<key>CFBundleName</key>\n\t<string>$newAppName</string>',
         );
       } else {
         // Try to add it if it doesn't exist (before </dict>)
@@ -394,7 +394,7 @@ class AppNameManager {
             !content.contains('CFBundleName')) {
           content = content.replaceFirst(
             dictCloseRegex,
-            '\t<key>CFBundleName</key>\n\t<string>${newAppName}</string>\n\$1</dict>',
+            '\t<key>CFBundleName</key>\n\t<string>$newAppName</string>\n\$1</dict>',
           );
         }
       }
@@ -407,7 +407,7 @@ class AppNameManager {
         content = content.replaceAllMapped(
           bundleDisplayNameRegex,
           (match) =>
-              '<key>CFBundleDisplayName</key>\n\t<string>${newAppName}</string>',
+              '<key>CFBundleDisplayName</key>\n\t<string>$newAppName</string>',
         );
       } else {
         // Try to add it if it doesn't exist (before </dict>)
@@ -416,7 +416,7 @@ class AppNameManager {
             !content.contains('CFBundleDisplayName')) {
           content = content.replaceFirst(
             dictCloseRegex,
-            '\t<key>CFBundleDisplayName</key>\n\t<string>${newAppName}</string>\n\$1</dict>',
+            '\t<key>CFBundleDisplayName</key>\n\t<string>$newAppName</string>\n\$1</dict>',
           );
         }
       }

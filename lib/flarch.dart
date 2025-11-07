@@ -19,20 +19,40 @@ import 'src/features/init/init_manager.dart';
 import 'src/features/health/health_manager.dart';
 import 'src/core/factories/architecture_factory.dart';
 
+/// Flarch CLI Tool - A powerful command-line interface for Flutter Clean Architecture.
+///
+/// This tool helps developers create and manage Flutter projects with clean architecture,
+/// multiple state management solutions, and automated project configuration.
 class Flarch {
-  // RGB Color helper
+  /// RGB Color helper for terminal output.
+  ///
+  /// Returns an ANSI escape code for RGB color.
+  ///
+  /// - [r]: Red component (0-255)
+  /// - [g]: Green component (0-255)
+  /// - [b]: Blue component (0-255)
+  /// - [bold]: Whether to use bold text
   static String rgb(int r, int g, int b, {bool bold = false}) {
     final boldCode = bold ? '1;' : '';
     return '\x1B[${boldCode}38;2;$r;$g;${b}m';
   }
 
-  // Color scheme - Change these RGB values to customize colors
-  static final gold = rgb(255, 215, 0, bold: true); // Border and header lines
-  static final white = rgb(255, 255, 255); // Commands text
-  static final skyBlue = rgb(135, 206, 250, bold: true); // Section titles
-  static final successGreen = rgb(46, 204, 113); // Success messages
+  /// Gold color for borders and header lines.
+  static final gold = rgb(255, 215, 0, bold: true);
+
+  /// White color for commands text.
+  static final white = rgb(255, 255, 255);
+
+  /// Sky blue color for section titles.
+  static final skyBlue = rgb(135, 206, 250, bold: true);
+
+  /// Success green color for success messages.
+  static final successGreen = rgb(46, 204, 113);
+
+  /// ANSI reset code.
   static const reset = '\x1B[0m';
 
+  /// Prints the usage guide for the Flarch CLI tool.
   void printUsage() {
     Banner.show();
 
@@ -107,10 +127,17 @@ class Flarch {
     print('');
   }
 
+  /// Prints the version information.
   void printVersion() {
     Banner.show();
   }
 
+  /// Runs the Flarch CLI with the given arguments.
+  ///
+  /// Handles all commands including feature creation, project initialization,
+  /// configuration, and management operations.
+  ///
+  /// - [arguments]: Command-line arguments
   Future<void> run(List<String> arguments) async {
     // Handle help and version flags
     if (arguments.isNotEmpty) {

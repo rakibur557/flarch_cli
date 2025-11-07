@@ -234,7 +234,7 @@ class MainConfigManager {
     parts.add('');
     parts.add(mainFunctionBody);
 
-    final result = parts.join('\n') + '\n';
+    final result = '${parts.join('\n')}\n';
 
     return result;
   }

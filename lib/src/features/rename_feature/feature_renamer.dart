@@ -101,7 +101,7 @@ class FeatureRenamer {
     // Feature name should be lowercase, can contain underscores and numbers
     // Should start with a letter
     final regex = RegExp(r'^[a-z][a-z0-9_]*$');
-    return regex.hasMatch(name) && name.length > 0;
+    return regex.hasMatch(name) && name.isNotEmpty;
   }
 
   /// Rename directory
@@ -157,7 +157,7 @@ class FeatureRenamer {
         var suffix = match.group(2) ?? '';
         // Replace feature name in the suffix path as well (e.g., /data_sources/add_data_source.dart)
         suffix = suffix.replaceAll(oldFeatureName, newFeatureName);
-        return "import '${prefix}$newFeatureName$suffix';";
+        return "import '$prefix$newFeatureName$suffix';";
       },
     );
 
@@ -186,7 +186,7 @@ class FeatureRenamer {
         final prefix = match.group(1) ?? '';
         var suffix = match.group(2) ?? '';
         suffix = suffix.replaceAll(oldFeatureName, newFeatureName);
-        return "export '${prefix}$newFeatureName$suffix';";
+        return "export '$prefix$newFeatureName$suffix';";
       },
     );
 
@@ -258,7 +258,7 @@ class FeatureRenamer {
             (match) {
               final prefix = match.group(1) ?? '';
               final suffix = match.group(2) ?? '';
-              return "import '${prefix}$newFeatureName$suffix';";
+              return "import '$prefix$newFeatureName$suffix';";
             },
           );
 
@@ -271,7 +271,7 @@ class FeatureRenamer {
             (match) {
               final prefix = match.group(1) ?? '';
               final suffix = match.group(2) ?? '';
-              return "export '${prefix}$newFeatureName$suffix';";
+              return "export '$prefix$newFeatureName$suffix';";
             },
           );
 
@@ -378,7 +378,7 @@ class FeatureRenamer {
                 RegExp(':\\s+$oldClassName$suffix(\\s|,|\\)|\\{)');
             content = content.replaceAllMapped(
               returnTypePattern,
-              (match) => ': $newClassName${suffix}${match.group(1)}',
+              (match) => ': $newClassName$suffix${match.group(1)}',
             );
 
             final paramPattern =
@@ -598,7 +598,7 @@ class FeatureRenamer {
               final prefix = match.group(1) ?? '';
               final middle = match.group(2) ?? '';
               final suffix = match.group(3) ?? '';
-              return "import '${prefix}${middle}$newFeatureName$suffix';";
+              return "import '$prefix$middle$newFeatureName$suffix';";
             },
           );
 
@@ -613,7 +613,7 @@ class FeatureRenamer {
               final prefix = match.group(1) ?? '';
               final middle = match.group(2) ?? '';
               final suffix = match.group(3) ?? '';
-              return "export '${prefix}${middle}$newFeatureName$suffix';";
+              return "export '$prefix$middle$newFeatureName$suffix';";
             },
           );
 
@@ -628,7 +628,7 @@ class FeatureRenamer {
             (match) {
               final prefix = match.group(1) ?? '';
               final suffix = match.group(2) ?? '';
-              return '${prefix}$newFeatureName$suffix';
+              return '$prefix$newFeatureName$suffix';
             },
           );
 

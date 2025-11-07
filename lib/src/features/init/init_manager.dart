@@ -975,7 +975,7 @@ Future<void> initializeStorage() async {
       if (matches.isNotEmpty) {
         final lastMatch = matches.last;
         final insertIndex = lastMatch.end;
-        content = content.substring(0, insertIndex) + '\n$importLine' + content.substring(insertIndex);
+        content = '${content.substring(0, insertIndex)}\n$importLine${content.substring(insertIndex)}';
       } else {
         content = '$importLine\n$content';
       }
@@ -1012,12 +1012,12 @@ Future<void> initializeStorage() async {
             while (lineStart > 0 && content[lineStart - 1] != '\n') {
               lineStart--;
             }
-            content = content.substring(0, lineStart) + '$bindingCall\n$initCall\n' + content.substring(lineStart);
+            content = '${content.substring(0, lineStart)}$bindingCall\n$initCall\n${content.substring(lineStart)}';
           } else {
             // Insert at start of main function
             content = content.replaceFirst(
               RegExp(r'(Future<void>\s+)?main\(\)\s*async\s*\{'),
-              'Future<void> main() async {\n$bindingCall\n$initCall',
+              'Future<void> main() async {\n$bindingCall\n$initCall\n',
             );
           }
         } else {
@@ -1031,9 +1031,9 @@ Future<void> initializeStorage() async {
             }
             if (afterIndex < content.length && content[afterIndex] == '\n') {
               afterIndex++;
-              content = content.substring(0, afterIndex) + '$initCall\n' + content.substring(afterIndex);
+              content = '${content.substring(0, afterIndex)}$initCall\n${content.substring(afterIndex)}';
             } else {
-              content = content.substring(0, insertIndex) + '\n$initCall' + content.substring(insertIndex);
+              content = '${content.substring(0, insertIndex)}\n$initCall${content.substring(insertIndex)}';
             }
           }
         }

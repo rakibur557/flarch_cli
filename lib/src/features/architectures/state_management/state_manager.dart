@@ -31,7 +31,7 @@ class StateManager {
     }
   }
 
-  static _createBlocFiles(
+  static void _createBlocFiles(
       String featureName, String name, String architecture) {
     name = Utility.convertCase(name, toCamelCase: true);
     final fileName = Utility.convertCase(name, toCamelCase: false);

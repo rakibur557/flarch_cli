@@ -11,7 +11,7 @@ class Banner {
   static const String githubUrl = 'https://github.com/rakibur557/flarch_cli';
 
   // TrueColor helper
-  static String rgb(int r, int g, int b) => '\x1B[38;2;$r;${g};${b}m';
+  static String rgb(int r, int g, int b) => '\x1B[38;2;$r;$g;${b}m';
 
   static const reset = '\x1B[0m';
   static const bold = '\x1B[1m';

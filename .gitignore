@@ -73,6 +73,7 @@ NOTES.md
 *.note
 PRE_PUBLISH_CHECKLIST.md
 PUBLISHING.md
+COMPLETE_PUBLISHING_GUIDE.md
 
 # Environment and secrets
 .env

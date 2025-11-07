@@ -326,7 +326,7 @@ class HealthManager {
       final featuresDir = Directory('lib/features');
       if (featuresDir.existsSync()) {
         final entities = featuresDir.listSync();
-        featureCount = entities.where((e) => e is Directory).length;
+        featureCount = entities.whereType<Directory>().length;
       }
     }
     checks.add(HealthCheck(

@@ -52,7 +52,7 @@ class StorageConfigManager {
 
       // Summary
       Logger.summary('Storage Configuration Complete', [
-        '${storageOption} dependencies added',
+        '$storageOption dependencies added',
         'Storage service created',
         'Initialization code configured',
         'Project files updated',
@@ -240,7 +240,7 @@ class StorageConfigManager {
       if (matches.isNotEmpty) {
         final lastMatch = matches.last;
         final insertIndex = lastMatch.end;
-        content = content.substring(0, insertIndex) + '\n$importLine' + content.substring(insertIndex);
+        content = '${content.substring(0, insertIndex)}\n$importLine${content.substring(insertIndex)}';
       } else {
         content = '$importLine\n$content';
       }
