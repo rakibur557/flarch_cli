@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-01-17
+
+### Fixed
+- Fixed banner display issue where "m" characters were appearing around the banner
+- Fixed ANSI escape code formatting in `rgb()` function
+
+### Improved
+- Improved pub points score from 120/160 to 160/160
+- Fixed package description length (now within 60-180 character range)
+- Added comprehensive dartdoc comments to all public API elements
+- Fixed all 32 static analysis issues (type annotations, string interpolation, etc.)
+- Created example directory with working example code
+
 ## [1.0.0] - 2025-11-07
 
 ### Added
@@ -88,4 +101,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.0.1]: https://github.com/rakibur557/flarch_cli/releases/tag/v1.0.1
 [1.0.0]: https://github.com/rakibur557/flarch_cli/releases/tag/v1.0.0

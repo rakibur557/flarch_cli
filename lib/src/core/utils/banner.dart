@@ -6,7 +6,7 @@ void main() {
 
 /// Flutter Architecture CLI Tool — skyBlue Edition Banner
 class Banner {
-  static const String version = '1.0.0';
+  static const String version = '1.0.1';
   static const String developer = 'Rakibur Rahman';
   static const String githubUrl = 'https://github.com/rakibur557/flarch_cli';
 

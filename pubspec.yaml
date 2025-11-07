@@ -1,6 +1,6 @@
 name: flarch
 description: A powerful CLI tool for Flutter Clean Architecture. Automates project setup, feature creation, and configuration with support for multiple architectures and state management solutions.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/rakibur557/flarch_cli
 repository: https://github.com/rakibur557/flarch_cli
 issue_tracker: https://github.com/rakibur557/flarch_cli/issues
